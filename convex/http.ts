@@ -6,6 +6,9 @@ import {api} from "./_generated/api";
 
 const http = httpRouter();
 
+// What are Webhooks:
+// They are automated messages that are sent when something happens.
+
 http.route({
     path: "/clerk-webhook",
     method: "POST",
@@ -15,7 +18,7 @@ http.route({
             throw new Error("Missing CLERK_WEBHOOK_SECRET environment variable");
         }
 
-        const svix_id = request.headers.get("svix-id");
+        const svix_id = request.headers.get("svix-id");  // clerk uses svix for webhooks, id, signatures and etc.
         const svix_signature = request.headers.get("svix-signature");
         const svix_timestamp = request.headers.get("svix-timestamp");
 
@@ -60,6 +63,9 @@ http.route({
                 console.log("Error creating user", error);
                 return new Response("Error creating user", {status: 500});
             }
+        } else{
+            console.log("Event Type is not supported");
+            return new Response("Event Type is not supported", {status: 400});   
         }
 
         return new Response("Webhook processed successfully", {status: 200});
