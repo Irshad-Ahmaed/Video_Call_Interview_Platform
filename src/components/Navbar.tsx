@@ -2,7 +2,7 @@ import React from 'react'
 import { ModeToggle } from './ModeToggle'
 import Link from 'next/link'
 import { CodeIcon } from 'lucide-react'
-import { SignedIn, UserButton } from '@clerk/nextjs'
+import { UserButton } from '@clerk/nextjs'
 import DashboardBtn from './DashboardBtn'
 
 const Navbar = () => {
@@ -20,13 +20,11 @@ const Navbar = () => {
         </Link>
 
         {/* Right Side */}
-        {/* <SignedIn> */}
           <div className='flex items-center space-x-4 ml-auto'>
             <DashboardBtn />
             <ModeToggle/>
             <UserButton/>
           </div>
-        {/* </SignedIn> */}
       </div>
     </nav>
   )
